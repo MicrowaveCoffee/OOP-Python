@@ -23,6 +23,10 @@ class Circle():
         self.shapeType = "Circle"
         
 
+        self.centerX = random.randint(self.radius, maxWidth - self.radius)
+        self.centerY = random.randint(self.radius, maxHeight - self.radius)
+
+
     # def clickedInside():
         
     def getArea(self):
