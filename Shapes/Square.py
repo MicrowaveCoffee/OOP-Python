@@ -1,46 +1,47 @@
-import pygame 
-import random
+import random 
+import pygame
 
 RED = (255,0,0)
 GREEN = (0,255,0)
 BLUE = (0,0,255)
 
 class Square():
-    def __init__(self,window,maxHeight, maxWidth):
+    def __init__(self, window, maxHeight, maxWidth):
         self.window = window
-        self.widthAndHeight = random.randrange(10,100)
+        self.widthAndHeight = random.randrange(10, 100)
         self.color = random.choice((RED,GREEN,BLUE))
         self.x = random.randrange(1, maxWidth - 100)
         self.y = random.randrange(25, maxHeight - 100)
-        self.shapeType = 'Square'
-        self.rect = pygame.Rect(self.x,self.y,self.widthAndHeight,self.widthAndHeight)
-        
+        self.rect = pygame.Rect(self.x, self.y , self.widthAndHeight, self.widthAndHeight)
+        self.shapeType = "Square"
 
-    def getArea(self):
-        theArea = self.widthAndHeight * self.widthAndHeight
-        return theArea
-    
     def getType(self):
         return self.shapeType
     
-    def clickedInside(self,mousePoint):
+    def getArea(self):
+        theArea = self.widthAndHeight ** 2
+        return theArea
+    
+    def clickedInside(self, mousePoint):
         clicked = self.rect.collidepoint(mousePoint)
         return clicked
     
     def draw(self):
-        pygame.draw.rect(self.window, self.color, self.rect)
+        pygame.draw.rect(self.window,self.color,self.rect)
+    
 
 
 pygame.init()
 WIDTH = 800
 HEIGHT = 600
+squares = []
+clock = pygame.time.Clock()
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Square Game")
 
 
-clock = pygame.time.Clock()
 
-squares = []
+
 for i in range(5):
     square = Square(window, WIDTH, HEIGHT)
     squares.append(square)
